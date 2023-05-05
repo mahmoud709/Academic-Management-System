@@ -1,18 +1,18 @@
-import express from "express";
+import express from 'express';
+import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
-import { env } from 'process';
-import dotenv from "dotenv";
-dotenv.config();
+import * as dotenv from 'dotenv';
+import route from './routes/subjects.js';
 
+mongoose.connect('mongodb://127.0.0.1:27017/department')
+dotenv.config()
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-
-app.get('/', (req, res) => {
-    res.send("<h2>Hello from NodeJS</h2>")
-})
-app.listen(process.env.port|3000, () => {
-    console.log(`App is started on port ${process.env.port}`)
-})
+app.use('/subjects',route)
+app.listen(3000, () => {
+    console.log('app is running')
+});
