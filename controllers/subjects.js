@@ -17,7 +17,5 @@ export const store = async (req, res) => {
         code:SubjectCode,
         department:Department,
     });
-    console.log(req.body)
-    console.log(SubjectName)
     res.redirect('/subjects');
 };
