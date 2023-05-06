@@ -19,3 +19,9 @@ export const store = async (req, res) => {
     });
     res.redirect('/subjects');
 };
+
+export const show = async (req, res) => {
+    const { _id } = req.params;
+    const singlesubject = await subjectmodel.findById(_id).populate('department').lean();
+    res.render('subjects/show', { singlesubject })
+}
