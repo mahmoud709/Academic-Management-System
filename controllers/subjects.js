@@ -8,7 +8,7 @@ export const index = async (req, res) => {
     res.render('subjects/index', { subjects })
 }
 export const create = async (req, res) => {
-    const departments = await departmentmodel.find().lean();
+    const departments = await departmentmodel.find().sort({ createdAt: 1 }).lean();
     res.render('subjects/create', { departments })
 }
 
@@ -29,7 +29,7 @@ export const show = async (req, res) => {
 }
 
 export const alldeps = async (req, res) => {
-    const alldepartments = await departmentmodel.find({}, { name: 1 }).lean();
+    const alldepartments = await departmentmodel.find().lean();
     const deps=[...new Set(alldepartments)]
     res.render('departments/department', { deps });
 }
