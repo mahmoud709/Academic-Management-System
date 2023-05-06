@@ -14,9 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-app.use('/subjects',route)
+
+// use the route middleware with the /admin prefix
+app.use('/admin', route);
+
 app.use('/studentAcc' , studentsAcc);
 app.use('/doctorAcc' , doctorsAcc);
+
 app.listen(3000, () => {
     console.log('app is running')
 });
