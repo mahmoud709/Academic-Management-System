@@ -1,0 +1,25 @@
+<h1 style="text-align: center; margin:20px">Create a New Student Accounts</h1>
+
+<form action="/studentAcc" method="post">
+    {{!-- username --}}
+    <div>
+        <label for="">Username</label>
+        <input type="text" class="form-control" name="username">
+    </div>
+
+    {{!-- password --}}
+    <div>
+        <label for="">Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
+
+
+    <div>
+        <label for="">AcademicNumber</label>
+       <input type="text" class="form-control" name="academicNumber">
+    </div>
+    <div>
+        <button class="btn btn-outline-success my-2" type="submit">Save</button>
+    </div>
+
+</form>
