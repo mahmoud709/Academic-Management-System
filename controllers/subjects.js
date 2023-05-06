@@ -1,6 +1,8 @@
 import departmentmodel from '../database/department.js';
 import subjectmodel from '../database/sub.js';
-
+export const admin=(req, res) => {
+    res.render('layouts/admin')
+}
 export const index = async (req, res) => {
     let subjects = await subjectmodel.find({}, { name: 1 }).sort({ createdAt: 1 }).lean();
     res.render('subjects/index', { subjects })
@@ -17,7 +19,7 @@ export const store = async (req, res) => {
         code:SubjectCode,
         department:Department,
     });
-    res.redirect('/subjects');
+    res.redirect('/admin/subjects');
 };
 
 export const show = async (req, res) => {

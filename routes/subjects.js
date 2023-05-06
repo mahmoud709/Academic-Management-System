@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { create, index, store ,show} from "../controllers/subjects.js";
+import { admin,create, index, store ,show} from "../controllers/subjects.js";
 
 const route = new Router();
-
-route.get('/', index);
-route.get('/create', create);
-route.post('/', store);
-route.get('/:_id',show)
+route.get('/',admin )
+route.get('/subjects', index);
+route.get('/subjects/create', create);
+route.post('/subjects', store);
+route.get('/subjects/:_id',show)
 export default route;
 
 
