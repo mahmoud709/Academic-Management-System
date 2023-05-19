@@ -13,11 +13,12 @@ export const create = async (req, res) => {
 }
 
 export const store = async (req, res) => {
-    const { SubjectName, SubjectCode, Department } = req.body;
+    const { SubjectName, SubjectCode, Department,previousSubjects } = req.body;
     await subjectmodel.create({
         name:SubjectName,
         code:SubjectCode,
-        department:Department,
+        department: Department,
+        previousSubjects:previousSubjects,
     });
     res.redirect('/admin/subjects');
 };
@@ -50,4 +51,22 @@ export const createdepartment = async (req, res) => {
         });
         res.redirect('/admin/departments');
     }
+}
+
+export const edit = async (req, res) => {
+    const { _id } = req.params;
+    const editsubject = await subjectmodel.findById( _id ).lean();
+    const departments = await departmentmodel.find().sort({ createdAt: 1 }).lean();
+    res.render('subjects/edit', { departments, subject: editsubject });
+}
+export const update = async (req, res) => {
+    const { SubjectName, SubjectCode, Department,previousSubjects } = req.body;
+    const { _id } = req.params;
+    await subjectmodel.findByIdAndUpdate({ _id }, { $set: { name: SubjectName, code: SubjectCode, department: Department, previousSubjects: previousSubjects } });
+    res.redirect('/admin/subjects');
+}
+export const deleteOne = async (req, res) => {
+    const { _id } = req.params;
+    await subjectmodel.findByIdAndDelete(_id);
+    return res.redirect('/admin/subjects');
 }
