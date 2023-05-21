@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { admin,create, index, store ,show,addepartment,alldeps,createdepartment} from "../controllers/subjects.js";
+import { admin,create, index, store ,show,addepartment,alldeps,createdepartment,edit,update, deleteOne} from "../controllers/subjects.js";
 
 const route = new Router();
 route.get('/',admin )
@@ -9,7 +9,10 @@ route.post('/subjects', store);
 route.get('/subjects/:_id', show)
 route.get('/departments',alldeps)
 route.get('/adddep', addepartment)
-route.post('/departments',createdepartment)
+route.post('/departments', createdepartment)
+route.get('/subjects/:_id/edit', edit)
+route.put('/subjects/:_id', update)
+route.delete('/subjects/:_id',deleteOne)
 export default route;
 
 
