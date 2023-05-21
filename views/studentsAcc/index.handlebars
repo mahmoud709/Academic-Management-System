@@ -2,39 +2,33 @@
 
     <h1 style="margin: 20px;">Student Accounts</h1>
 
-<div class="my-2">
-    <a href="/studentAcc/create"><button class="btn btn-primary btn-lg btn-block" style="margin: 20px;"> Add A New Student Accounts</button> </a>
-</div>
-
-
-
-<table class="table ">
-    <tr class="bg-primary">
-        <td >Username</td>
-        <td>Password</td>
-        <td>AcademicNumber</td>
-    </tr>
-    {{#each subviwe}}
-    <tr class="table-info" >
-        <th>{{username}}</th>
-        <th >
-            <div>
-             {{password}}
-            </div>
-        </th>
-        <th id="{{academicNumber}}">
-            <div>
-    
-                {{academicNumber}}
-            </div>
-        </th>
-    </tr>
-    {{/each}}
-</table>
+    <div class="my-2">
+        <a href="/admin/studentAcc/create"><button class="btn btn-primary btn-lg btn-block" style="margin: 20px;"> Add A
+                New Student Accounts</button> </a>
+    </div>
+    <table class="table ">
+        <tr class="bg-primary">
+            <td>Username</td>
+            <td>Password</td>
+            <td>AcademicNumber</td>
+        </tr>
+        {{#each subviwe}}
+        <tr class="table-info">
+            <th>{{username}}</th>
+            <th>
+                <div>
+                    {{password}}
+                </div>
+            </th>
+            <th id="{{academicNumber}}">
+                <div>
+                    {{academicNumber}}
+                </div>
+            </th>
+        </tr>
+        {{/each}}
+    </table>
 
 
 
 </div>
- 
-
-
