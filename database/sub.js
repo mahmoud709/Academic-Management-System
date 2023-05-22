@@ -13,12 +13,15 @@ const subject = new Schema({
         type: String,
         required:false
     },
+    previosSupjects: {
+        type: String,
+        required: false,
+    },
     department:{
         type : Schema.Types.ObjectId ,
         required:false,
         ref :'department'
-    },
-
+    }
 }, { timestamps: true });
 
 const subjectmodel = model('subject', subject);

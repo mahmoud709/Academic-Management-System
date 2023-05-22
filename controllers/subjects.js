@@ -57,7 +57,7 @@ export const edit = async (req, res) => {
     const { _id } = req.params;
     const editsubject = await subjectmodel.findById( _id ).lean();
     const departments = await departmentmodel.find().sort({ createdAt: 1 }).lean();
-    res.render('subjects/edit', { departments, subject: editsubject });
+    res.render('subjects/edit', { departments, subject: editsubject, });
 }
 export const update = async (req, res) => {
     const { SubjectName, SubjectCode, Department,previousSubjects } = req.body;
