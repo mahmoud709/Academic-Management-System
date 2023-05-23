@@ -22,5 +22,4 @@ export const login= async (req, res) =>{
     const jwtToken= jwt.sign(data,process.env.JWT_SECTRET)
     res.cookie('token',jwtToken)
     res.send('logged in')
-    console.log(data)
 };
