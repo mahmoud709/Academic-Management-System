@@ -1,5 +1,7 @@
 import departmentmodel from '../database/department.js';
 import subjectmodel from '../database/sub.js';
+import studentAcc from "../database/studentAcc.js";
+
 export const admin=(req, res) => {
     res.render('layouts/admin')
 }
@@ -31,12 +33,8 @@ export const show = async (req, res) => {
 
 export const alldeps = async (req, res) => {
     const alldepartments = await departmentmodel.find().lean();
-    const deps=[...new Set(alldepartments)]
+    const deps=[...alldepartments]
     res.render('departments/department', { deps });
-}
-
-export const addepartment =(req, res) => {
-    res.render('departments/adddepartment')
 }
 
 export const createdepartment = async (req, res) => {
@@ -52,12 +50,15 @@ export const createdepartment = async (req, res) => {
         res.redirect('/admin/departments');
     }
 }
+export const addepartment =(req, res) => {
+    res.render('departments/adddepartment')
+}
 
 export const edit = async (req, res) => {
     const { _id } = req.params;
-    const editsubject = await subjectmodel.findById( _id ).lean();
+    const editsubject = await subjectmodel.findById( _id ).populate('department').lean();
     const departments = await departmentmodel.find().sort({ createdAt: 1 }).lean();
-    res.render('subjects/edit', { departments, subject: editsubject, });
+    res.render('subjects/edit', { departments, subject: editsubject });
 }
 export const update = async (req, res) => {
     const { SubjectName, SubjectCode, Department,previousSubjects } = req.body;
@@ -70,3 +71,12 @@ export const deleteOne = async (req, res) => {
     await subjectmodel.findByIdAndDelete(_id);
     return res.redirect('/admin/subjects');
 }
+export const absence = async (req, res) => {
+    let subjects = await subjectmodel.find({}, { name: 1 }).sort({ createdAt: 1 }).lean();
+    res.render('absence/listsub',{subjects})
+}
+
+export const list = async (req, res) => {
+    const subviwe = await studentAcc.find().lean();
+    res.render('absence/liststudent',{subviwe});
+};

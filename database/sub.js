@@ -9,13 +9,9 @@ const subject = new Schema({
         type: String,
         required: false,
     },
-    previosSupjects: {
+    previousSubjects: {
         type: String,
-        required:false
-    },
-    previosSupjects: {
-        type: String,
-        required: false,
+        required:true
     },
     department:{
         type : Schema.Types.ObjectId ,
