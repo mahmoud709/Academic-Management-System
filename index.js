@@ -1,32 +1,39 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
+import methodOveride from 'method-override';
+dotenv.config();
+
 import route from './routes/subjects.js';
 import studentsAcc from './routes/studentsAcc.js';
 import doctorsAcc from './routes/doctorsAcc.js';
 import adminsAcc from './routes/adminsAcc.js';
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/department')
-dotenv.config()
+mongoose.connect(process.env.mongoConnection)
 const app = express();
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOveride('_method'))
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-// use the route middleware with the /admin prefix
 app.use('/admin', route);
+app.use('/admin/studentAcc' , studentsAcc);
+app.use('/admin/doctorAcc' , doctorsAcc);
 
-app.use('/studentAcc' , studentsAcc);
-app.use('/doctorAcc' , doctorsAcc);
-<<<<<<< HEAD
-app.use('/adminAcc' , adminsAcc);
+
+app.use('/admin/studentAcc' , studentsAcc);
+app.use('/admin/doctorAcc' , doctorsAcc);
+app.use('/admin/adminAcc' , adminsAcc);
 =======
 
->>>>>>> 6bb310f597962aa0919bff73e8c0b051d638c249
-app.listen(3000, () => {
-    console.log('app is running')
+app.listen(process.env.port, () => {
+    console.log(`app is running in http://localhost:${process.env.port}`)
+});
+=======
+app.listen(process.env.port, () => {
+    console.log(`app is running in http://localhost:${process.env.port}`)
 });

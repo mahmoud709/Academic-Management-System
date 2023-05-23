@@ -9,6 +9,12 @@
 </head>
 
 <body>
+    <nav aria-label="breadcrumb" class="my-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin">Admin Page</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create Subject</li>
+        </ol>
+    </nav>
     <form action="/admin/subjects" method="POST">
         <div class="container my-5">
             <div class="title text-center">
@@ -33,7 +39,7 @@
             </div>
             <div class="subDepartment my-2">
                 <label for="Previoussubjects" class="form-label fw-bold">Previous subjects</label>
-                <input type="text" id="Previoussubjects" class="form-control" name="Previoussubjects">
+                <input type="text" id="Previoussubjects" class="form-control" name="previousSubjects">
             </div>
             <button type="submit" class="btn btn-primary my-2">Add Subject</button>
     </form>
