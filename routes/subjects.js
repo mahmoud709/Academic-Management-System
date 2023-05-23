@@ -14,7 +14,7 @@ route.get('/subjects/:_id/edit', edit)
 route.put('/subjects/:_id', update)
 route.delete('/subjects/:_id', deleteOne)
 route.get('/absence', absence)
-route.get('/absence/list',list)
+route.get('/absence/list', list)
 export default route;
 
 

@@ -17,6 +17,10 @@ const subject = new Schema({
         type : Schema.Types.ObjectId ,
         required:false,
         ref :'department'
+    },
+    doctorname: {
+        type: String,
+        required:false,
     }
 }, { timestamps: true });
 

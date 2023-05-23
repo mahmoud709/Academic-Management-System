@@ -8,18 +8,17 @@ export const index = async (req , res) =>{
 
 
 export const create = async (req , res) =>{
-  
     res.render('adminsAcc/create');
 };
 
 
 export const store= async (req , res) =>{
 
- const {username , password } = req.body;
+const {username , password } = req.body;
     await adminAcc.create({
         username , 
         password ,
-       
+
     });
     res.redirect('/admin/adminAcc');
 };
@@ -33,6 +32,6 @@ const {id} = req.params;
 const singleAcc= await studentAcc.findById(id).lean();
 
 res.render('studentsAcc/show', {studentAcc:singleAcc})
-   
+
 };
 

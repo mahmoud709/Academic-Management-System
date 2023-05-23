@@ -1,7 +1,7 @@
 import departmentmodel from '../database/department.js';
 import subjectmodel from '../database/sub.js';
 import studentAcc from "../database/studentAcc.js";
-
+import user from '../database/user.js';
 export const admin=(req, res) => {
     res.render('layouts/admin')
 }
@@ -15,12 +15,13 @@ export const create = async (req, res) => {
 }
 
 export const store = async (req, res) => {
-    const { SubjectName, SubjectCode, Department,previousSubjects } = req.body;
+    const { SubjectName, SubjectCode, Department,previousSubjects,doctorname } = req.body;
     await subjectmodel.create({
         name:SubjectName,
         code:SubjectCode,
         department: Department,
-        previousSubjects:previousSubjects,
+        previousSubjects: previousSubjects,
+        doctorname: doctorname,
     });
     res.redirect('/admin/subjects');
 };
@@ -80,3 +81,4 @@ export const list = async (req, res) => {
     const subviwe = await studentAcc.find().lean();
     res.render('absence/liststudent',{subviwe});
 };
+
